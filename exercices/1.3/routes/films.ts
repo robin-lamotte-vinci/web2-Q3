@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { Film, NewFilm } from "../types";
+import { Film } from "../types";
+import { isNewFilm } from "../utils/type-guards";
 
 const router = Router();
 
@@ -59,35 +60,11 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const body: unknown = req.body;
 
-  if (
-    !body ||
-    typeof body !== "object" ||
-    !("title" in body) ||
-    !("director" in body) ||
-    !("duration" in body) ||
-    typeof body.title !== "string" ||
-    typeof body.director !== "string" ||
-    typeof body.duration !== "number" ||
-    !body.title.trim() ||
-    !body.director.trim() ||
-    body.duration <= 0
-  ) {
+  if (!isNewFilm(body)) {
     return res.sendStatus(400);
   }
 
-  if (
-    ("budget" in body &&
-      (typeof body.budget !== "number" || body.budget < 0)) ||
-    ("description" in body &&
-      (typeof body.description !== "string" || !body.description.trim())) ||
-    ("imageUrl" in body &&
-      (typeof body.imageUrl !== "string" || !body.imageUrl.trim()))
-  ) {
-    return res.sendStatus(400);
-  }
-
-  const { title, director, duration, budget, description, imageUrl } =
-    body as NewFilm;
+  const { title, director, duration, budget, description, imageUrl } = body;
 
   const nextId =
     defaultFilms.reduce(
