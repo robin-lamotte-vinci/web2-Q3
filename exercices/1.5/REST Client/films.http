@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:3000
+
+### Read all films
+GET {{baseUrl}}/films
+
+### Read a single film
+GET {{baseUrl}}/films/3
+
+### Read all film longer than 145 minutes
+GET {{baseUrl}}/films/?minimum-duration=145
+
+### Create a drink
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title":"API films",
+    "director":"API engineer",
+    "duration":128,
+    "budget":3.5
+}
