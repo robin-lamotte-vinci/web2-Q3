@@ -1,0 +1,105 @@
+@baseUrl = http://localhost:3000
+
+### Read all films
+GET {{baseUrl}}/films
+
+### Read a single film
+GET {{baseUrl}}/films/3
+
+### Read all film longer than 145 minutes
+GET {{baseUrl}}/films/?minimum-duration=145
+
+### Create a new film (valid)
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+  "title": "API films",
+  "director": "API engineer",
+  "duration": 128,
+  "budget": 3.5
+}
+
+### Create duplicate (should return 409)
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+  "title": "API films",
+  "director": "API engineer",
+  "duration": 128,
+  "budget": 3.5
+}
+
+### Create with extra key (should return 400)
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+  "title": "Bad Film",
+  "director": "Someone",
+  "duration": 90,
+  "budget": 1,
+  "extra": "not allowed"
+}
+
+### Get invalid minimum-duration (non-number) -> 400
+GET {{baseUrl}}/films?minimum-duration=abc
+
+### Get invalid minimum-duration (<=0) -> 400
+GET {{baseUrl}}/films?minimum-duration=0
+
+### Get invalid id -> 400
+GET {{baseUrl}}/films/abc
+
+### Get non-existing id -> 404
+GET {{baseUrl}}/films/99
+
+### Delete existing film (id 2)
+DELETE {{baseUrl}}/films/2
+
+### Delete non-existing -> 404
+DELETE {{baseUrl}}/films/999
+
+### Delete invalid id -> 400
+DELETE {{baseUrl}}/films/abc
+
+### Patch partial update (id 3)
+PATCH {{baseUrl}}/films/3
+Content-Type: application/json
+
+{
+  "duration": 180
+}
+
+### Patch with unknown key -> 400
+PATCH {{baseUrl}}/films/3
+Content-Type: application/json
+
+{
+  "foo": "bar"
+}
+
+### Put replace (id 3)
+PUT {{baseUrl}}/films/3
+Content-Type: application/json
+
+{
+  "title": "Interstellar (Director's Cut)",
+  "director": "Christopher Nolan",
+  "duration": 183,
+  "budget": 170,
+  "description": "Extended edition",
+  "imageUrl": "https://example.com/interstellar-cut.jpg"
+}
+
+### Put create (non-existing id) - should create a new film
+PUT {{baseUrl}}/films/999
+Content-Type: application/json
+
+{
+  "title": "New PUT Film",
+  "director": "PUT Director",
+  "duration": 100,
+  "budget": 5
+}
