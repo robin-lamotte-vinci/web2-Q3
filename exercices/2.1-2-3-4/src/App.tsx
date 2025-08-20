@@ -13,11 +13,33 @@ const App = () => {
   const cinema2Movie2Title = "Film 2 - Toison d'Or";
   const cinema2Movie2Director = "Director D";
 
+  const cinema1Movies = [
+    {
+      title: "Film 1 - DeBrouckère",
+      director: "Director A",
+    },
+    {
+      title: "Film 2 - DeBrouckère",
+      director: "Director B",
+    },
+  ];
+
+  const cinema2Movies = [
+    {
+      title: "Film 1 - Toison d'Or",
+      director: "Director C",
+    },
+    {
+      title: "Film 2 - Toison d'Or",
+      director: "Director D",
+    },
+  ];
+
   return (
     <div>
       <PageTitle title={pageTitle} />
-      <Cinema name={cinema1Name} movies={[{title: cinema1Movie1Title, director: cinema1Movie1Director}, {title: cinema1Movie2Title, director: cinema1Movie2Director}]}/>
-      <Cinema name={cinema2Name} movies={[{title: cinema2Movie1Title, director: cinema2Movie1Director}, {title: cinema2Movie2Title, director: cinema2Movie2Director}]}/>
+      <Cinema name={cinema1Name} movies={cinema1Movies} />
+      <Cinema name={cinema2Name} movies={cinema2Movies} />
     </div>
   );
 };
@@ -57,11 +79,12 @@ const Cinema = (props: CinemaProps) => {
     <div>
       <h2>{props.name}</h2>
       <ul>
-        <Movie title={props.movies[0].title} director={props.movies[0].director}/>
-        <Movie title={props.movies[1].title} director={props.movies[1].director}/>
+        {props.movies.map((movie, index) => (
+          <Movie key={index} title={movie.title} director={movie.director} />
+        ))}
       </ul>
     </div>
   );
-}
+};
 
 export default App;
