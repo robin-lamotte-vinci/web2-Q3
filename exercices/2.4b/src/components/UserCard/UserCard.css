@@ -1,0 +1,30 @@
+.card {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 320px;
+}
+
+.name {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.age {
+    margin: 6px 0 0;
+    color: #444;
+}
+
+.status {
+    margin-top: 8px;
+}
+
+.online {
+    color: green;
+    font-weight: 600;
+}
+
+.offline {
+    color: red;
+    font-weight: 600;
+}
