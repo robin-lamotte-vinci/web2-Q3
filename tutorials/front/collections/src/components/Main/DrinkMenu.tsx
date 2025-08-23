@@ -3,11 +3,11 @@ interface DrinkMenuProps {
     children: React.ReactNode
 }
 
-const DrinkMenu = (props: DrinkMenuProps) => {
+const DrinkMenu = ({title, children}: DrinkMenuProps) => {
     return (
         <div className="drink-menu">
-            <h4>{props.title}</h4>
-            <div className="drink-items">{props.children}</div>
+            <h4>{title}</h4>
+            <div className="drink-items">{children}</div>
         </div>
     );
 }
