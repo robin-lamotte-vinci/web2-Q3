@@ -1,6 +1,5 @@
 footer {
-  position: fixed;
-  bottom: 0;
+  /* Ne pas utiliser position: fixed ou absolute */
   width: 100%;
   z-index: 100;
 

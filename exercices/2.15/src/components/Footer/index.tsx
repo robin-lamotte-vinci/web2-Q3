@@ -7,10 +7,12 @@ interface FooterProps {
 
 const Footer = (props: FooterProps) => {
   return (
-    <footer>
-      <div>{props.children}</div>
-      <img src={props.urlLogo} alt="logo" className="logo" />
-    </footer>
+    <div>
+      <footer>
+        <div>{props.children}</div>
+        <img src={props.urlLogo} alt="logo" className="logo" />
+      </footer>
+    </div>
   );
 };
 

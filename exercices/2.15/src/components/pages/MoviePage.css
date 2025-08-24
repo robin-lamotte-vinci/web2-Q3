@@ -1,0 +1,22 @@
+.delete-movie-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3em;
+  color: #e53935;
+  transition: color 0.2s;
+  border-radius: 50%;
+  outline: none;
+}
+
+.delete-movie-btn:hover,
+.delete-movie-btn:focus {
+  color: #b71c1c;
+  background: #ffeaea;
+}
+
+.delete-movie-icon {
+  width: 2em;
+  height: 2em;
+  display: block;
+}

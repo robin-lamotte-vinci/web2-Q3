@@ -6,7 +6,8 @@ import "./App.css";
 import type { Movie, MovieContext, NewMovie } from "../../types";
 import { useCallback, useEffect, useState } from "react";
 import {
-  createMovie,
+  deleteMovieRequest,
+  createMovieRequest,
   fetchAllMovies,
   toggleMovieFavoriteRequest,
 } from "../../utils/movies-service";
@@ -15,8 +16,12 @@ function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   const addMovie = async (newMovie: NewMovie) => {
-    await createMovie(newMovie);
-    initMovies();
+    try {
+      await createMovieRequest(newMovie);
+      initMovies();
+    } catch (err) {
+      console.error("addMovie::error: ", err);
+    }
   };
 
   const initMovies = useCallback(async () => {
@@ -33,20 +38,34 @@ function App() {
   }, [initMovies]);
 
   const toggleFavorite = async (movie: Movie) => {
-    await toggleMovieFavoriteRequest(movie.id, !movie.isFavorite);
+    try {
+      await toggleMovieFavoriteRequest(movie.id, !movie.isFavorite);
 
-    //lazy to re-init all movies for one favorite attribute ...
-    setMovies((movies) =>
-      movies.map((m) =>
-        m.id === movie.id ? { ...m, isFavorite: !m.isFavorite } : m
-      )
-    );
+      //lazy to re-init all movies for one favorite attribute ...
+      setMovies((movies) =>
+        movies.map((m) =>
+          m.id === movie.id ? { ...m, isFavorite: !m.isFavorite } : m
+        )
+      );
+    } catch (err) {
+      console.error("toggleFavorite::error: ", err);
+    }
+  };
+
+  const deleteMovie = async (movie: Movie) => {
+    try {
+      await deleteMovieRequest(movie.id);
+      initMovies();
+    } catch (err) {
+      console.error("deleteMovie::error: ", err);
+    }
   };
 
   const fullMovieContext: MovieContext = {
     movies: movies,
     addMovie: addMovie,
     toggleFavorite: toggleFavorite,
+    deleteMovie: deleteMovie,
   };
 
   return (

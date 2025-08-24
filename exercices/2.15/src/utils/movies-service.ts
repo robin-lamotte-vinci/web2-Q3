@@ -46,7 +46,7 @@ const toggleMovieFavoriteRequest = async (id: number, isFavorite: boolean): Prom
   }
 };
 
-const createMovie = async (newMovie: NewMovie): Promise<Movie> => {
+const createMovieRequest = async (newMovie: NewMovie): Promise<Movie> => {
   try {
     const response = await fetch("/api/films/", {
       method: "POST",
@@ -65,5 +65,19 @@ const createMovie = async (newMovie: NewMovie): Promise<Movie> => {
   }
 };
 
+const deleteMovieRequest = async (id: number): Promise<void> => {
+  try {
+    const response = await fetch(`/api/films/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok)
+      throw new Error(`Failed to delete movie : ${response.statusText}`);
+  } catch (err) {
+    console.error("deleteMovie::error: ", err);
+    throw err;
+  }
+};
 
-export { fetchAllMovies, fetchOneMovie, toggleMovieFavoriteRequest, createMovie };
+
+
+export { fetchAllMovies, fetchOneMovie, toggleMovieFavoriteRequest, createMovieRequest, deleteMovieRequest };

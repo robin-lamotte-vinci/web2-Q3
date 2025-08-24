@@ -13,7 +13,8 @@ type NewMovie = Omit<Movie, 'id' | 'isFavorite'>
 
 interface MovieContext {
     movies: Movie[];
-    addMovie: (movie: Movie) => Promise<void>; 
+    addMovie: (movie: NewMovie) => Promise<void>; 
+    deleteMovie: (movie: Movie) => Promise<void>;
     toggleFavorite: (movie: Movie) => Promise<void>;
 }
 
