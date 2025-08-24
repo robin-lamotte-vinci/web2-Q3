@@ -1,0 +1,23 @@
+.navbar {
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: center; /* centre les boutons horizontalement */
+  align-items: center;
+  gap: 20px; /* espace entre les boutons */
+}
+
+.navbar button {
+  padding: 8px 18px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.navbar button:hover {
+  background: #646cff;
+}
