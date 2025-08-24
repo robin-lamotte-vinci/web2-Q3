@@ -16,6 +16,7 @@ const expectedKeys = [
   "title",
   "director",
   "duration",
+  "isFavorite",
   "budget",
   "description",
   "imageUrl",

@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--secondary-main);
+  background-size: cover;
+}
+
+div#root {
+  height: 100%;
+  display: inline-block; /* avoid margins to collapse to avoid vertical scrollbar */
+  width: 100%;
+}
+
+:root {
+  --primary-main: #3a3f4a;
+  --primary-light: #5a5f6a;
+  --primary-dark: #23262b;
+  --primary-contrast-text: #f5f6fa;
+
+  --secondary-main: #6c757d;
+  --secondary-light: #adb5bd;
+  --secondary-dark: #495057;
+  --secondary-contrast-text: #f5f6fa;
+}
+

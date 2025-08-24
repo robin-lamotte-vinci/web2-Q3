@@ -3,10 +3,11 @@ interface Film {
   title: string;
   director: string;
   duration: number;
+  isFavorite: boolean;
   budget?: number;
   description?: string;
   imageUrl?: string;
 }
-type NewFilm = Omit<Film, "id">;
+type NewFilm = Omit<Film, "id" | "isFavorite">;
 
 export type { Film, NewFilm };

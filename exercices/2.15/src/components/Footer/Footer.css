@@ -1,0 +1,17 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  background-color: var(--primary-main);
+  color: var(--primary-secondary-text);
+  text-align: center;
+}
+
+.logo {
+  height: 50px;
+}
