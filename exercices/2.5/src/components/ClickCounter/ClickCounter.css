@@ -1,0 +1,11 @@
+.counter-button {
+  min-height: 64px;       /* réserve de place générale si besoin */
+
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.hover-message {
+  height: 18px;           /* hauteur fixe qui stabilise le layout */
+  line-height: 18px;
+}
