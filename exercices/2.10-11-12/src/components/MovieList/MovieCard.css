@@ -6,6 +6,7 @@
     overflow: hidden;
     font-family: sans-serif;
     margin: 0 auto;
+    position: relative; /* <-- Ajoute cette ligne */
 }
 
 .movie-card__img {

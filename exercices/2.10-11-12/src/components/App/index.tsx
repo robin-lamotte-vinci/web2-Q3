@@ -12,6 +12,7 @@ const defaultMovies: Movie[] = [
     director: "Christopher Nolan",
     duration: 148,
     imageUrl: "https://m.media-amazon.com/images/I/51zUbui+gbL._AC_SY679_.jpg",
+    isFavorite: true,
     description:
       "Un voleur expérimenté, le meilleur dans l'art dangereux de l'extraction, vole des secrets précieux du plus profond du subconscient.",
     budget: 160,
@@ -20,6 +21,7 @@ const defaultMovies: Movie[] = [
     title: "Le Fabuleux Destin d'Amélie Poulain",
     director: "Jean-Pierre Jeunet",
     duration: 122,
+    isFavorite: false,
     description:
       "Amélie, une jeune serveuse à Montmartre, décide de changer la vie de ceux qui l'entourent.",
     budget: 10,
@@ -28,6 +30,7 @@ const defaultMovies: Movie[] = [
     title: "Parasite",
     director: "Bong Joon-ho",
     duration: 132,
+    isFavorite: false,
     imageUrl: "https://blog.richersounds.com/wp-content/uploads/2020/07/parasite.jpg",
     budget: 11,
   },
@@ -35,6 +38,7 @@ const defaultMovies: Movie[] = [
     title: "Interstellar",
     director: "Christopher Nolan",
     duration: 169,
+    isFavorite: true,
     imageUrl: "https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SY679_.jpg",
     description:
       "Dans un futur proche, la Terre se meurt. Un groupe d'explorateurs utilise un trou de ver pour franchir les limites du voyage spatial.",
@@ -43,6 +47,7 @@ const defaultMovies: Movie[] = [
     title: "La La Land",
     director: "Damien Chazelle",
     duration: 128,
+    isFavorite: false,
     imageUrl: "https://m.media-amazon.com/images/I/81A-mvlo+QL._AC_SY679_.jpg",
     description:
       "Une actrice en devenir et un musicien de jazz passionné tombent amoureux à Los Angeles.",
@@ -57,9 +62,21 @@ const addMovie = (newMovie: Movie) => {
   setMovies([...movies, newMovie]);
 }
 
+const toggleFavorite = (movie: Movie) => {
+  setMovies(movies =>
+    movies.map(m =>
+      m.title === movie.title && m.director === movie.director
+        ? { ...m, isFavorite: !m.isFavorite }
+        : m
+    )
+  );
+
+}
+
 const fullMovieContext: MovieContext = {
   movies: movies,
   addMovie: addMovie,
+  toggleFavorite: toggleFavorite,
 }
 
   return (

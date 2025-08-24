@@ -6,13 +6,13 @@ import { useOutletContext } from "react-router-dom";
 
 function MovieListPage() {
   
-  const { movies }: MovieContext = useOutletContext();
+  const { movies, toggleFavorite }: MovieContext = useOutletContext();
 
   return (
     <>
       <h1>Movies</h1>
       <br />
-      <MovieListView movies={movies} />
+      <MovieListView movies={movies} toggleFavorite={toggleFavorite} />
       <br />
     </>
   );

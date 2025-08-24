@@ -23,6 +23,7 @@ const navigate = useNavigate();
             title: title,
             director: director,
             duration: parseInt(duration),
+            isFavorite: false,
             imageUrl: imageUrl || undefined,
             description: description || undefined,
             budget: budget ? parseInt(budget) : undefined,
