@@ -3,11 +3,12 @@ import Footer from "../Footer";
 import Header from "../Header";
 import NavBar from "../NavBar/NavBar";
 import "./App.css";
-import type { Movie, MovieContext } from "../../types";
+import type { Movie, MovieContext, NewMovie } from "../../types";
 import { useState } from "react";
 
 const defaultMovies: Movie[] = [
   {
+    id: 1,
     title: "Inception",
     director: "Christopher Nolan",
     duration: 148,
@@ -18,6 +19,7 @@ const defaultMovies: Movie[] = [
     budget: 160,
   },
   {
+    id: 2,
     title: "Le Fabuleux Destin d'Amélie Poulain",
     director: "Jean-Pierre Jeunet",
     duration: 122,
@@ -27,6 +29,7 @@ const defaultMovies: Movie[] = [
     budget: 10,
   },
   {
+    id: 3,
     title: "Parasite",
     director: "Bong Joon-ho",
     duration: 132,
@@ -35,6 +38,7 @@ const defaultMovies: Movie[] = [
     budget: 11,
   },
   {
+    id: 4,
     title: "Interstellar",
     director: "Christopher Nolan",
     duration: 169,
@@ -44,6 +48,7 @@ const defaultMovies: Movie[] = [
       "Dans un futur proche, la Terre se meurt. Un groupe d'explorateurs utilise un trou de ver pour franchir les limites du voyage spatial.",
   },
   {
+    id: 5,
     title: "La La Land",
     director: "Damien Chazelle",
     duration: 128,
@@ -58,14 +63,16 @@ const defaultMovies: Movie[] = [
 function App() {
 const [movies, setMovies] = useState(defaultMovies);
 
-const addMovie = (newMovie: Movie) => {
-  setMovies([...movies, newMovie]);
+const addMovie = (newMovie: NewMovie) => {
+  const nextId = movies.reduce((max, m) => (m.id > max ? m.id : max), 0) + 1;
+  const m: Movie = {...newMovie, id: nextId}
+  setMovies([...movies, m]);
 }
 
 const toggleFavorite = (movie: Movie) => {
   setMovies(movies =>
     movies.map(m =>
-      m.title === movie.title && m.director === movie.director
+      m.id === movie.id
         ? { ...m, isFavorite: !m.isFavorite }
         : m
     )

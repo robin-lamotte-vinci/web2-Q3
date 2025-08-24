@@ -10,8 +10,8 @@ interface MovieListViewProps {
 const MovieListView = ({ movies, toggleFavorite }: MovieListViewProps) => {
     return (
         <section className="movie-list-view">
-            {movies.map((movie, idx) => (
-                <MovieCard key={movie.title + idx} movie={movie} toggleFavorite={toggleFavorite}/>
+            {movies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} toggleFavorite={toggleFavorite}/>
             ))}
         </section>
     );

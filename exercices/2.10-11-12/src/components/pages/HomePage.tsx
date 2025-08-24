@@ -1,9 +1,10 @@
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import type { MovieContext } from "../../types";
 import "./HomePage.css";
 
 const HomePage = () => {
   const { movies }: MovieContext = useOutletContext();
+  const navigate = useNavigate();
   return (
     <div className="homepage-container">
       <h1>Bienvenue sur iMovies</h1>
@@ -22,8 +23,12 @@ const HomePage = () => {
       <ul>
         {movies
           .filter((m) => m.isFavorite)
-          .map((m, index) => (
-            <li key={index}>
+          .map((m) => (
+            <li
+              key={m.id}
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+              onClick={() => navigate(`/movies/${m.id}`)}
+            >
               {m.title} - {m.director}
             </li>
           ))}
