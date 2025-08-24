@@ -5,7 +5,7 @@ const Joke = () => {
     const [joke, setJoke] = useState("");
     const [category, setCategory] = useState("");
 
-    const fetchJoke = () => {
+    const fetchJoke = async () => {
         fetch("https://v2.jokeapi.dev/joke/Any?type=single").then((response) => {
             if (!response.ok) {
                 throw new Error(
@@ -25,6 +25,14 @@ const Joke = () => {
 
     useEffect(() => {
         fetchJoke();
+    }, []);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            fetchJoke();
+        }, 5000);
+
+        return () => clearInterval(timer);
     }, []);
 
     return (
