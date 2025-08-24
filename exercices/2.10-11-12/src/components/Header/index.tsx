@@ -7,7 +7,7 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   return (
-    <header className="header">
+    <header>
       <img src={props.urlLogo} alt="logo" className="logo" />
       <div>{props.children}</div>
     </header>

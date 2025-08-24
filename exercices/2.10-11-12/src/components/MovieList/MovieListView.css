@@ -4,6 +4,6 @@
     gap: 32px;
     justify-content: center;
     padding: 32px 0;
-    background: #f7f9fb;
+    background: var(--secondary-main);
     min-height: 100vh;
 }

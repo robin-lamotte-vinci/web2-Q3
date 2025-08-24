@@ -1,5 +1,5 @@
 .navbar {
-  color: white;
+  color: var(--primary-contrast-text);
   padding: 10px;
   display: flex;
   justify-content: center; /* centre les boutons horizontalement */
@@ -9,8 +9,8 @@
 
 .navbar button {
   padding: 8px 18px;
-  background: #444;
-  color: white;
+  background: var(--primary-dark);
+  color: var(--primary-contrast-text);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -19,5 +19,5 @@
 }
 
 .navbar button:hover {
-  background: #646cff;
+  background: var(--primary-light);
 }

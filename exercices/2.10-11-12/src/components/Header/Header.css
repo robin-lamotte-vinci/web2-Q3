@@ -1,12 +1,21 @@
-.header {
-  background-color: #333;
-  color: white;
+header {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: var(--primary-main);
+  color: var(--primary-contrast-text);
   text-align: center;
-  padding: 10px;
-
-  display: flex;
-  justify-content: start;
 }
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+header.secondary {
+  background-color: var(--secondary-main);
+  color: var(--secondary-contrastText);
+}
+
 
 .logo {
   padding: 10px;

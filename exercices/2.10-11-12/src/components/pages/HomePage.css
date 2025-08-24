@@ -1,0 +1,26 @@
+.homepage-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 32px;
+    background: var(--primary-contrast-text);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.homepage-container h1 {
+    color: var(--primary-main);
+    margin-bottom: 16px;
+}
+
+.homepage-container p {
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.homepage-container ul {
+    list-style: disc inside;
+    text-align: left;
+    margin: 0 auto;
+    display: inline-block;
+}

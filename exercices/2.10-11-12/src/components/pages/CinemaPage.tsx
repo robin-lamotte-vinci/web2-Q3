@@ -1,5 +1,6 @@
-import Cinema from "../Cinema/Cinema";
+import Cinema from "../Cinema";
 import type { Movie } from "../../types";
+import "./CinemaPage.css"
 
 const movies: Movie[] = [
     {

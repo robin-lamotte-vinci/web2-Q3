@@ -1,17 +1,17 @@
-.footer{
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 100;
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
 
-    display: flex;
-    justify-content:space-evenly
+  padding-left: 16px;
+  padding-right: 16px;
+
+  background-color: var(--primary-main);
+  color: var(--primary-secondary-text);
+  text-align: center;
 }
 
-.logo{
-    height: 50px;
+.logo {
+  height: 50px;
 }
