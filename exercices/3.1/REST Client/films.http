@@ -1,0 +1,103 @@
+@baseUrl = http://localhost:3000
+
+##################################################
+############ First login as the admin ############
+##################################################
+
+##### 1. Define a request variable nammed admin :
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+#### 2. Define a file variable to simplify the access to the token of admin
+@adminToken = {{admin.response.body.token}}
+
+
+##################################################
+############## NORMAL OPERATION  #################
+##################################################
+
+### Read all films (no auth required)
+GET {{baseUrl}}/films
+
+### Read film identified by 2 (no auth required)
+GET {{baseUrl}}/films/2
+
+### Create a film with the admin token
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "duration": 148,
+    "budget": 160000000,
+    "descritpion": "A thief who steals corporate secrets through dream-sharing technology.",
+    "imageUrl": "https://image.tmdb.org/t/p/original/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg"
+}
+
+##################################################
+############### ERROR OPERATION  #################
+##################################################
+
+########### WITHOUT AUTHENTICATED TOKEN ###########
+
+### Create a film without the admin token
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "duration": 148,
+    "budget": 160000000,
+    "descritpion": "A thief who steals corporate secrets through dream-sharing technology.",
+    "imageUrl": "https://image.tmdb.org/t/p/original/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg"
+}
+
+########### BAD OPERATIONS WITH AUTHENTICATED TOKEN ###########
+
+### Read film which does not exist
+GET {{baseUrl}}/films/2048
+
+### Read film with NaN id
+GET {{baseUrl}}/films/NaN
+
+### Create a film with an empty title
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "title": "",
+    "director": "Christopher Nolan",
+    "duration": 148
+}
+
+### Create a film without the director key
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "title": "Inception",
+    "duration": 148
+}
+
+### Create a film with an unexpected key
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "duration": 148,
+    "unexpected": "unexpected key"
+}

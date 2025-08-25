@@ -1,0 +1,72 @@
+@baseUrl = http://localhost:3000
+
+######### REGISTER ###########
+
+### Register a new user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "password123"
+}
+
+### Register with missing password
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username": "bob"
+}
+
+### Register with empty username
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username": "",
+    "password": "pass"
+}
+
+### Register with existing username (should return 409)
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "password123"
+}
+
+######### LOGIN ###########
+
+### Login with correct credentials
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "password123"
+}
+
+### Login with wrong password
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username": "alice",
+    "password": "wrongpass"
+}
+
+### Login with missing username
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "password": "password123"
+}
+
+### Login with empty body
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{}

@@ -1,0 +1,94 @@
+@baseUrl = http://localhost:3000
+
+##################################################
+############ First login as the admin ############
+##################################################
+
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+#### Define a file variable to simplify the access to the token of admin
+@adminToken = {{admin.response.body.token}}
+
+##################################################
+############## NORMAL OPERATION  #################
+##################################################
+
+### Read all comments with the admin token
+GET {{baseUrl}}/comments
+Authorization: {{adminToken}}
+
+### Read all comments for film id 2 with the admin token
+GET {{baseUrl}}/comments?id_film=2
+Authorization: {{adminToken}}
+
+### Create a comment with the admin token
+POST {{baseUrl}}/comments
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "idFilm": 2,
+    "username": "admin",
+    "comment": "Super film !"
+}
+
+##################################################
+############### ERROR OPERATION  #################
+##################################################
+
+########### WITHOUT AUTHENTICATED TOKEN ###########
+
+### Read comments without authenticated token
+GET {{baseUrl}}/comments
+
+### Create a comment without the admin token
+POST {{baseUrl}}/comments
+Content-Type: application/json
+
+{
+    "idFilm": 2,
+    "username": "admin",
+    "comment": "Super film !"
+}
+
+########### BAD OPERATIONS WITH AUTHENTICATED TOKEN ###########
+
+### Create a comment with an empty comment
+POST {{baseUrl}}/comments
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "idFilm": 2,
+    "username": "admin",
+    "comment": ""
+}
+
+### Create a comment without the username key
+POST {{baseUrl}}/comments
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "idFilm": 2,
+    "comment": "Super film !"
+}
+
+### Create a comment with an unexpected key
+POST {{baseUrl}}/comments
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "idFilm": 2,
+    "username": "admin",
+    "comment": "Super film !",
+    "unexpected": "unexpected key"
+}
